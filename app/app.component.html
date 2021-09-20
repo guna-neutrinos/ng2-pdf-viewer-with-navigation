@@ -18,10 +18,23 @@
     (text-layer-rendered)="textLayerRendered($event)"
     style="display: block; border: 1px solid red"
   ></pdf-viewer>
-  <button (click)="nextPage()">Next page</button>
   <button (click)="previous()">previous</button>
+  <button (click)="nextPage()">Next</button>
+  <br />
   <button (click)="zoomin()">zoomin</button>
   <button (click)="zoomout()">zoomout</button>
+  <div fxLayout="row">
+    <div *ngFor="let item of [].constructor(totalPages); let i = index">
+      <button
+        [ngStyle]="{
+          background: i == selected ? 'green' : 'red'
+        }"
+        (click)="addvalue(i)"
+      >
+        {{ i + 1 }}
+      </button>
+    </div>
+  </div>
   <span *ngIf="pdfSrc">
     <button>{{ pageVariable }}</button>of
     <button>{{ totalPages }}</button></span

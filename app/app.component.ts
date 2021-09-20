@@ -7,9 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   pdfSrc = '';
-  pageVariable = 1;
-  zoom= 1;
-totalPages: any;
+  pageVariable: number = 1;
+  zoom = 1;
+  totalPages: any;
+  selected: number;
+  i;
+  numbers: number[];
+
   nextPage() {
     this.pageVariable++;
   }
@@ -17,11 +21,17 @@ totalPages: any;
     this.pageVariable--;
   }
   zoomin() {
-    this.zoom =this.zoom+0.1;
+    this.zoom = this.zoom + 0.1;
   }
   zoomout() {
-    if (this.zoom >0.1) 
-      this.zoom =this.zoom-0.1;
+    if (this.zoom > 0.1) this.zoom = this.zoom - 0.1;
+  }
+  addvalue(i) {
+    // console.log(event.target.innerHTML, 'target');
+    this.selected = i ;
+
+    this.pageVariable = this.selected;
+    console.log(this.pageVariable, this.selected);
   }
 
   afterLoadComplete(pdf: any) {
